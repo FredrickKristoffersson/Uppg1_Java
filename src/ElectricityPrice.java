@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 
-public class ElectricityPrice {
+class ElectricityPrice {
     // Making hourInterval final, no further changes is needed for that string
     private final String hourInterval;
     private int price;
@@ -14,21 +14,21 @@ public class ElectricityPrice {
         this.price = price;
     }
 
-    public String getHourInterval() {
+    String getHourInterval() {
         return hourInterval;
     }
 
-    public int getPrice() {
+    int getPrice() {
         return price;
     }
 
     // when we want to change prices (with method updatePrices) we use this method
-    public void setPrice(int price) {
+    void setPrice(int price) {
         this.price = price;
     }
 
     // Create a method who adds some initial price-values
-    public static ArrayList<ElectricityPrice> getInitialValues() {
+    static ArrayList<ElectricityPrice> getInitialValues() {
         // Creating an ArrayList inside this method. Now we can create an array with values directly,
         // instead of creating a blank array and THEN add values
         ArrayList<ElectricityPrice> electricityPrices = new ArrayList<>();
@@ -62,8 +62,8 @@ public class ElectricityPrice {
     }
 
     // Method that change order of list with cheapest price first
-    public static void showSortedPriceList(ArrayList<ElectricityPrice> chosenArray) {
-        Collections.sort(chosenArray, Comparator.comparingInt(ElectricityPrice::getPrice));
+    static void showSortedPriceList(ArrayList<ElectricityPrice> chosenArray) {
+        chosenArray.sort(Comparator.comparingInt(ElectricityPrice::getPrice));
 
         System.out.println("\nLista över billigast pris samt vid vilket timmesintervall dessa priser är:\n");
         for (ElectricityPrice electricityPrice : chosenArray) {
@@ -74,7 +74,7 @@ public class ElectricityPrice {
     }
 
     // method that present min, max and average prices
-    public static void presentMinMaxAverage(ArrayList<ElectricityPrice> chosenArray) {
+    static void presentMinMaxAverage(ArrayList<ElectricityPrice> chosenArray) {
         System.out.println("\nPresentation av min, max och snittpris:");
         // get cheapest price
         ElectricityPrice minPrice = chosenArray.stream().min(Comparator.comparingInt(ElectricityPrice::getPrice)).get();
@@ -95,7 +95,7 @@ public class ElectricityPrice {
     }
 
     // method to update prices
-    public static void updatePrices(ArrayList<ElectricityPrice> chosenArray) {
+    static void updatePrices(ArrayList<ElectricityPrice> chosenArray) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nAnge nytt pris för varje tidsintervall:");
         System.out.println("(Ange e för att avbryta)");
@@ -130,12 +130,12 @@ public class ElectricityPrice {
     so when we go to option 1 (Inmatning) after option 3, our list is rearanged.
     This method handles that problem and makes the list in chronological order again.
     */
-    public static void sortPricesByTimeInterval(ArrayList<ElectricityPrice> chosenArray) {
+    static void sortPricesByTimeInterval(ArrayList<ElectricityPrice> chosenArray) {
         chosenArray.sort(Comparator.comparing(ElectricityPrice::getHourInterval));
     }
 
     // method with sliding window technique that calculate cheapest 4 hours to charge car
-    public static void bestChargingTime(ArrayList<ElectricityPrice> chosenArray) {
+    static void bestChargingTime(ArrayList<ElectricityPrice> chosenArray) {
         int minSum = Integer.MAX_VALUE;
 //        int minSum = 1234;
         int bestStartIndex = 0;

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
-    public static void displayMenu(ArrayList<ElectricityPrice> testList) {
+    static void displayMenu(ArrayList<ElectricityPrice> testList) {
     while (true) {
         // printing out menu-choices and awaiting input from user
         System.out.println("\nElpriser");
